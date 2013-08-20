@@ -308,6 +308,11 @@ ERROR_MSG
 
       bin_dir = "bin"
       FileUtils.mkdir_p bin_dir
+
+      Dir.chdir("#{slug_vendor_ruby}/bin") do
+        File.symlink("ruby", "ruby.exe")
+      end
+
       Dir["#{slug_vendor_ruby}/bin/*"].each do |bin|
         run("ln -s ../#{bin} #{bin_dir}")
       end
